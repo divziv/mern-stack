@@ -11,6 +11,10 @@ app.get("/resume", function(req, res){
 	res.sendFile(__dirname+"/resume.html");
 });
 
+app.get("/testresume", function(req, res){
+	res.sendFile(__dirname+"/testresume.html");
+});
+
 app.listen(port, function(){
 	console.log("Server running on http://localhost:"+port);
 	console.log(`Server running on http://localhost:${port}`);
