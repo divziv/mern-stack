@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container
+        {
+            display:flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            align-content: center;
+            flex-direction: row;
+            height:auto;
+          width:auto;
+          padding: 0 4px;
+        }
+        @media (max-width: 800px) {
+            .container {
+              flex-direction: row;
+            }
+          }
+              
+        .box
+        {
+            border: 1px solid black;
+            border-radius: 4.5px;
+            padding-top: 15px;
+            padding-left: 15px;
+            padding-bottom: 15px;
+            padding-right: 15px;
+            min-width: 200px;
+            min-height: 255px;
+            background-color: rgba(255, 255, 255, .15); 
+            backdrop-filter: blur(100px);
+        }
+        div 
+        {
+            box-shadow: 6px 6px 13px grey;
+        }
+        .box:hover
+        {
+            box-shadow: 5px 5px 20px #1f456e;
+        }   
+      .box {
+          flex: 25%;
+          max-width: 50%;
+          padding: 0 4px;
+        }
+
+        .box img {
+          margin-top: 8px;
+          vertical-align: middle;
+      }
+
+        @media (max-width: 800px) {
+          .box {
+            max-width: 50%;
+            flex:50%;
+            
+          }
+        }
+
+        @media (max-width: 600px) {
+          .box {
+            max-width:100%;
+            flex:100%;
+          }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <img src="https://play-lh.googleusercontent.com/6UgEjh8Xuts4nwdWzTnWH8QtLuHqRMUB7dp24JYVE2xcYzq4HA8hFfcAbU-R-PC_9uA1" style="width:100%">
+            <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/original_images/play_10_year-keyword_asset-.png" style="width:100%">
+          <img src="https://hd2.tudocdn.net/1067242?w=824&h=494" style="width:100%">
+          
+        </div>
+    </div>
+</body>
+</html>

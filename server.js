@@ -19,6 +19,9 @@ app.get("/card", function(req, res){
 	res.sendFile(__dirname+"/card.html");
 });
 
+app.get("/pics", function(req, res){
+	res.sendFile(__dirname+"/pics.html");
+});
 app.listen(port, function(){
 	console.log("Server running on http://localhost:"+port);
 	console.log(`Server running on http://localhost:${port}`);
