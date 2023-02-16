@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sun/Moon</title>
+</head>
+<body>
+    <div>
+        <img id="pic" src="https://cdn-icons-png.flaticon.com/128/869/869869.png" alt="Sun" height=100px width=100px>
+        <br>
+        <button onclick="toggle()">
+            Toggle!
+        </button>
+    </div>
+    
+    <script>
+        const one={
+            image:"https://cdn-icons-png.flaticon.com/128/869/869869.png"
+        }
+        const two={
+            image:"https://cdn-icons-png.flaticon.com/128/581/581601.png"
+        }
+        let s=true;
+        let c=one;
+        let pic=document.getElementsByID("pic");
+        let toggle=function()
+        {
+            if(s)
+            {
+            
+            //pic.src="https://cdn-icons-png.flaticon.com/128/581/581601.png";
+                c=two;
+                s=false;
+            }
+            else{
+            
+            //pic.src="https://cdn-icons-png.flaticon.com/128/869/869869.png";
+                c=one;
+                s=true;
+            }
+            pic.src=c.image;
+        }
+
+    </script>
+</body>
+</html>

@@ -5,7 +5,7 @@ const mongoose=require("mongoose");
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5010;
-
+app.use(express.static("public"));
 app.get("/", function(req, res){
 	//res.send("Hey! I am Divya.");
 	res.sendFile(__dirname+"/index.html");
@@ -34,17 +34,66 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING,{},function(err){
 	}
 	else{
 		console.log("DB Connected.");
-		//TODO: do not create a user if at least one user exists in the collection
-		userlib.createFirstUser(function(err,res){
+		userlib.getAllUsers(function(err,res){
 			if(err)
 			{
-				//console.error(err);
+				console.error(err);
 			}
 			else
 			{
 				console.log(res);
 			}
 		});
+		//userlib.createUser({
+		//	username:"beingzero",
+		//	yearOfGraduation:2030
+		//}, function(err,result){
+		/*	if(err)
+			{
+				console.error(err);
+			}
+			else
+			{
+				console.log(result);
+			}
+		});
+		*/
+
+
+		//TODO: do not create a user if at least one user exists in the collection
+		//userlib.createFirstUser(function(err,res){
+		//	if(err)
+		//	{
+		//		//console.error(err);
+		//	}
+		//	else
+		//	{
+		//		console.log(res);
+		//	}
+		//});
+
+		//userlib.updateUser(function(err,result){
+		//	if(err)
+		//	{
+		//		console.error(err);
+		//	}
+		//	else
+		//	{
+		//		console.log(result);
+		//	}
+	//	});
+	/*	
+	userlib.deleteUser("divya",function(err,result){
+			if(err)
+			{
+				console.error(err);
+			}
+			else
+			{
+				console.log(result);
+			}
+		});
+		*/
 		app.listen(port, function(){
 			console.log("Server running on http://localhost:"+port);
 			console.log(`Server running on http://localhost:${port}`);

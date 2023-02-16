@@ -6,14 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me</title>
     <style>
-        .head{
-            width:auto;
+      .nav{
+          background-color: #040406;
+          overflow: hidden;
+          border: 1px solid #040406;
+          border-radius: 5px;
+      }
+      .nav a {
+          color: white;
+          text-align: center;
+          border: 1px solid #040406;
+          
+          padding: 20px 20px;
+          text-decoration: none;
+          font-size: 27px;
+        }
+        .nav a:hover {
+          background-color: white;
+          color: #04AA6D;
+        }
+        .nav a.active {
+          background-color: #04AA6D;
+          color: white;
+        }
+        .headele{
+            width:100%;
             height:7%;
-            background-color: ;
+            padding-top:0px;
+            background-color: #040406;
         }
     </style>
 </head>
-<body>
-    
+<body style="background-color:#040406">
+    <div class="nav">
+          <a class="active" href="/about.html">About</a>
+          <a href="/resume">Resume</a>
+          <a href="/card">Card</a>
+    </div>
+  <div style="color:#04AA6D">
+      <p style="size:87px">
+        <center>
+          <b>NAMASTE!</b>
+        </center>
+        </p>
+            <br>
+      <p style="font-size:12px; color:#04AA6D">
+        I am Divya.
+    </p>
+  </div>
 </body>
 </html>
