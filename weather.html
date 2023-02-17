@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        .main-container{
+            display:flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        #inputbox{
+            max-width: 40vw;
+
+        }
+        .weather-card{
+            min-width: 200px;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="inputbox" class="container main-container">
+    <h1>Weather App</h1>
+    <div class="input-group mb-3 mt-5">
+        <input id="searchbox" type="text" class="form-control form-control-lg" placeholder="Type a City Name">
+        <button class="btn btn-outline-success" type="button" id="button-addon2">
+            <i class="fas fa-search fa-lg fa-fw">
+            </i>
+        </button>
+      </div>
+      <div class="card weather-card" >
+
+        <div class="card-title text-center mt-3">
+            <h4 id="city">Delhi</h4>
+            <h6 id="date">Fri Feb 17 2023</h6>
+        </div>
+
+        <img id="cardimage" src="/images/clouds.jpg" class="card-img-top" alt="Weather Image">
+
+        <div class="card-body">
+          <h6 id="temp" class="display-4 font-weight-bold text-center">13°C</h6>
+          <h6 id="feellike" class="display-6 font-weight-bold text-center">(Feels like 13°C)</h6>
+          <h6 id="weather" class="display-7 text-center">Haze</h6>
+          <h5 id="minmaxtemp" class="text-center">25°C(min)/26°C(max)</h5>
+        </div>
+        
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  More Information
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <ul class="list-group">
+                        <li id="humidity" class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>Humidity</span> 53
+                        </li>
+                        <li id="pressure" class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>Pressure</span> 1018
+                        </li>
+                        <li id="visibility" class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>Visibility</span> 2109
+                        </li>
+                        <li id="windspeed" class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>Windspeed</span> 2.20
+                        </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      </div>
+    </div>
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script>
+        const weatherApi = {
+            key: "eb7a2d4a5a9b284fe54b7bb547238443",
+            baseUrl: "https://api.openweathermap.org/data/2.5/weather",
+        }
+        const searchbox= document.getElementById("searchbox");
+        searchbox.addEventListener("keypress",function(event){
+        
+            if(event.keyCode===13)
+            {
+                getWeatherReport(searchbox.value)
+            }
+        })
+        
+        function getWeatherReport(city) {
+
+            //  https://api.openweathermap.org/data/2.5/weather?q=cityName&appid=eb7a2d4a5a9b284fe54b7bb547238443&unit=metric
+            fetch(`${weatherApi.baseUrl}?q=${city}&appid=${weatherApi.key}&units=metric`)
+                .then(function (response) { return response.json() })
+                .then(function (response) {
+                    showWeatherReport(response);
+                })
+                .catch(function (err) {
+                    console.log(err)
+                })
+
+        }
+
+        function showWeatherReport(currentWeather)
+        {
+            let city=document.getElementById("city");
+            let currentDate=document.getElementById("date");
+            let cardimage=document.getElementById("cardimage");
+            let temp=document.getElementById("temp");
+            let feellike=document.getElementById("feellike");
+            let weather=document.getElementById("weather");
+            let minmaxtemp=document.getElementById("minmaxtemp");
+            let humidity=document.getElementById("humidity");
+            let pressure=document.getElementById("pressure");
+            let visibility=document.getElementById("visibility");
+            let windspeed=document.getElementById("windspeed");
+
+
+
+            city.innerHTML=currentWeather.name;
+            let todayDate=new Date().toDateString();
+            currentDate.innerHTML=todayDate;
+            cardimage.src=manageImage(currentWeather.weather[0].main);
+
+            temp.innerHTML=Math.round(currentWeather.main.temp)+"°C"
+            feellike.innerHTML=`(Feels like ${Math.round(currentWeather.main.feels_like)}°C)`
+            weather.innerHTML=currentWeather.weather[0].main;
+            minmaxtemp=`${Math.floor(currentWeather.main.temp.min)}°C(min)/${Math.floor(currentWeather.main.temp.max)}°C(max)`
+            humidity.innerHTML=`<span>Humidity </span> ${currentWeather.main.humidity}`
+            pressure.innerHTML=`<span>Pressure </span> ${currentWeather.main.pressure}`
+            visibility.innerHTML=`<span>Visibility </span> ${currentWeather.visibility}`
+            windspeed.innerHTML=`<span>Wind Speed </span> ${currentWeather.wind.speed}`
+        }
+
+        function manageImage(weatherType) {
+            if (weatherType === 'Clear') {
+        
+                return "images/clear.jpg"
+        
+            } else if (weatherType === 'Smoke') {
+        
+                return "images/smoke.jpg"
+        
+            } else if (weatherType === 'Haze') {
+        
+                return "images/haze.jpg"
+        
+            } else if (weatherType === 'Rain') {
+        
+                return "images/rain.jpg"
+        
+            } else if (weatherType === 'Snow') {
+        
+                return "images/snow.jpg"
+        
+            } else if (weatherType === 'Thunderstorm') {
+        
+                return "images/thunderstorm.jpg"
+        
+            } else if (weatherType === "Mist") {
+        
+                return "images/mist.jpg"
+        
+            } else if (weatherType === "Clouds") {
+        
+                return "images/clouds.jpg"
+        
+            }
+            else {
+                return "images/clear.jpg"
+            }
+        }
+    </script>
+</body>
+</html>
