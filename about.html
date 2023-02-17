@@ -1,12 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Eczar&display=swap" rel="stylesheet">
+  
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me</title>
     <style>
+      .spacing
+      {
+        font-family: 'Eczar', serif;
+        line-height:0.3;
+      }
+      .headings{
+        color:white;
+        font-size:40px;
+        line-height:0.5;
+        font-family: 'Eczar', serif;
+      }
+      
+      .bubble{
+        font-family: 'Raleway', sans-serif;
+        color:#17252a;
+          background-color:#def2f1;
+        border: 0.3px solid #040406;
+border-radius: 5.5px;
+padding-top: 15px;
+padding-left: 15px;
+padding-bottom: 15px;
+padding-right: 15px;
+background-color: rgba(255, 255, 255, #def2f1);  
+backdrop-filter: blur(255px);
+      }
+      .bubble p{
+        font-size:20px;
+      }
+      .bubble:hover
+      {
+        color:#def2f1;
+        background-color: rgba(255, 255, 255, 0);  
+  backdrop-filter: blur(255px);
+        box-shadow: 2.5px 2.5px 10px #2b7a78;
+      }
       .nav{
+        font-family: 'Raleway', sans-serif;
           background-color: #040406;
           overflow: hidden;
           border: 1px solid #040406;
@@ -22,11 +61,11 @@
           font-size: 27px;
         }
         .nav a:hover {
-          background-color: white;
-          color: #04AA6D;
+          background-color: #17252a;
+          color: #3aafa9;
         }
         .nav a.active {
-          background-color: #04AA6D;
+          background-color: #3aafa9;
           color: white;
         }
         .headele{
@@ -35,6 +74,16 @@
             padding-top:0px;
             background-color: #040406;
         }
+      .vl{
+          border-left: 2px solid #def2f1;
+        position:absolute;
+        height:38px;
+      }
+      .hl{
+        border: 1px solid #def2f1;
+        position:absolute;
+        width:40px;
+      }
     </style>
 </head>
 <body style="background-color:#040406">
@@ -43,16 +92,39 @@
           <a href="/resume">Resume</a>
           <a href="/card">Card</a>
     </div>
-  <div style="color:#04AA6D">
-      <p style="size:87px">
-        <center>
-          <b>NAMASTE!</b>
-        </center>
-        </p>
-            <br>
-      <p style="font-size:12px; color:#04AA6D">
-        I am Divya.
+  <br>
+  <div class="spacing" style="color:#3aafa9">
+      <h1 style="font-size:57px">
+          <b>NAMASTE🙏
+        </h1>
+      <p style="font-size:40px; color:#3aafa9">
+        I am Divya Hari Kumar</b>
     </p>
   </div>
+  <!-- <hr style="width:100%"> -->
+  <div class="bubble" style="line-height:0.1; font-size:30px">
+    <p>
+        I am a curious learner, currently working on enhancing my technical skills by applying them on my projects.
+    </p>
+    <p>
+      My communication skills have time and again proven to be my biggest strength.
+    </p>
+  </div>
+  <br>
+  
+  <div class="headings">
+    <p><center>Education</center></p>
+  </div>
+  <p></p>
+  <div class="hl" style="left:50%;margin-left:40px"></div>
+  <div class="vl" style="left:50%; margin-left:40px"></div>
+  <br><br>
+  <div class="vl" style="left:50%"></div>
+  <div class="hl" style="left:50%"></div>
+  <br><br>
+  <div class="hl" style="width:30px;right:50%;margin-left:80px"></div>
+  <div class="vl" style="right:50%; margin-right:32px"></div>
+  <br><br>
+
 </body>
 </html>
