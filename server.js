@@ -39,6 +39,10 @@ app.get("/weather", function(req, res){
 	res.sendFile(__dirname+"/weather.html");
 });
 
+app.get("/todo", function(req, res){
+	res.sendFile(__dirname+"/frontend/todo.html");
+});
+
 app.get("/darkmode", function(req, res){
 	res.sendFile(__dirname+"/darkmode.html");
 });
