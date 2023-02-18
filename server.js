@@ -34,6 +34,14 @@ app.get("/card", function(req, res){
 app.get("/pics", function(req, res){
 	res.sendFile(__dirname+"/pics.html");
 });
+
+app.get("/weather", function(req, res){
+	res.sendFile(__dirname+"/weather.html");
+});
+
+app.get("/darkmode", function(req, res){
+	res.sendFile(__dirname+"/darkmode.html");
+});
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.MONGO_CONNECTION_STRING,{},function(err){
 	if(err)
