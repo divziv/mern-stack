@@ -1,11 +1,16 @@
 require("dotenv").config();
 const userlib=require("./backend/lib/userlib");
+const todolib=require("./backend/lib/todolib");
 const mongoose=require("mongoose");
-
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5010;
+const options={
+	extensions:['htm','html','css','js','ico','jpg','jpeg','png','svg','pdf'],
+	index:['index.html']
+}
 app.use(express.static("public"));
+app.use(express.json());
 app.get("/", function(req, res){
 	//res.send("Hey! I am Divya.");
 	res.sendFile(__dirname+"/index.html");
@@ -39,9 +44,69 @@ app.get("/weather", function(req, res){
 	res.sendFile(__dirname+"/weather.html");
 });
 
-app.get("/todo", function(req, res){
-	res.sendFile(__dirname+"/frontend/todo.html");
+// app.get("/todo", function(req, res){
+// 	res.sendFile(__dirname+"/todo.html");
+// });
+
+
+app.get("/todos", function(req, res){
+	todolib.getAllTodos(function(err,todos){
+		if(err)
+		{
+			res.json({status:"error",message:err,data:null});
+		}
+		else
+		{
+			res.json({status:"success",data:todos});
+		}
+	});
+	//res.sendFile(__dirname+"/frontend/todo.html");
 });
+
+
+app.post('/api/todos',function(req,res){
+	const todo=req.body;
+	todolib.createTodo(todo,function(err,dbtodo){
+		if(err)
+		{
+			res.json({status:"error",message:err,data:null});
+		}
+		else
+		{
+			res.json({status:"success",data:dbtodo});
+		}
+	});
+});
+
+app.put('/api/todos/:todoid',function(req,res){
+	const todo=req.body;
+	const todoid=req.params.todoid;
+	todolib.updateTodoById(todoid,todo,function(err,dbtodo){
+		if(err)
+		{
+			res.json({status:"error",message:err,data:null});
+		}
+		else
+		{
+			res.json({status:"success",data:dbtodo});
+		}
+	});
+});
+
+app.delete('/api/todos/todoid',function(req,res){
+	const todoid=req.params.todoid;
+	todolib.deleteTodoById(todoid,function(err,dbtodo){
+		if(err)
+		{
+			res.json({status:"error",message:err,data:null});
+		}
+		else
+		{
+			res.json({status:"success",data:dbtodo});
+		}
+	});
+});
+
 
 app.get("/darkmode", function(req, res){
 	res.sendFile(__dirname+"/darkmode.html");
