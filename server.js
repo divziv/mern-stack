@@ -1,8 +1,16 @@
-require("dotenv").config();
-const userlib=require("./backend/lib/userlib");
+//require("dotenv").config();
+
+import dotenv from "dotenv";
+dotenv.config();
+
+//const userlib=require("./backend/lib/userlib");
+
+import userlib from "./backend/lib/userlib.js";
+
 const todolib=require("./backend/lib/todolib");
 const mongoose=require("mongoose");
-const express = require('express');
+const {request} = require('express');
+
 const app = express();
 const port = process.env.PORT || 5010;
 const options={
