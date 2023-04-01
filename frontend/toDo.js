@@ -147,7 +147,7 @@
 //         themeButton.innerHTML = '<i class="fas fa-sun fa-lg fa-fw"></i>';
 //     }
 // }
-console.log("Hello from JS");
+console.log("Hello from the backend");
 document.getElementById("loader").style.display = "block";
 const inputBox = document.getElementById("inputBox");
 inputBox.addEventListener("keydown",function(event){
