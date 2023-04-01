@@ -1,0 +1,14 @@
+REST APIs
+HTTP Verbs: GET, POST, PUT, DELETE
+CRUD Operations:
+
+1. Read/Retrieve:
+    GET /api/todos -- return all todos
+    GET /api/todos/id -- return single todo with given id
+2. Create:
+    POST /api/todos -- create a new todo(pass data)
+3. Update:
+    PUT /api/todos/id -- update todo with given id(pass data)
+4. Delete:
+    DELETE /api/todos/id -- delete todo with given id
+

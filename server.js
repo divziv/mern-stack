@@ -45,73 +45,158 @@ app.get("/weather", function(req, res){
 });
 
 
-app.get("/todo", function(req, res){
-	res.sendFile(__dirname+"/todo.html");
-});
-
 // app.get("/todo", function(req, res){
 // 	res.sendFile(__dirname+"/todo.html");
 // });
 
+// // app.get("/todo", function(req, res){
+// // 	res.sendFile(__dirname+"/todo.html");
+// // });
 
-app.get("/todos", function(req, res){
-	todolib.getAllTodos(function(err,todos){
-		if(err)
-		{
-			res.json({status:"error",message:err,data:null});
-		}
-		else
-		{
-			res.json({status:"success",data:todos});
-		}
-	});
-	//res.sendFile(__dirname+"/frontend/todo.html");
+
+// app.get("/todos", function(req, res){
+// 	todolib.getAllTodos(function(err,todos){
+// 		if(err)
+// 		{
+// 			res.json({status:"error",message:err,data:null});
+// 		}
+// 		else
+// 		{
+// 			res.json({status:"success",data:todos});
+// 		}
+// 	});
+// 	//res.sendFile(__dirname+"/frontend/todo.html");
+// });
+
+
+// app.post('/api/todos',function(req,res){
+// 	const todo=req.body;
+// 	todolib.createTodo(todo,function(err,dbtodo){
+// 		if(err)
+// 		{
+// 			res.json({status:"error",message:err,data:null});
+// 		}
+// 		else
+// 		{
+// 			res.json({status:"success",data:dbtodo});
+// 		}
+// 	});
+// });
+
+// app.put('/api/todos/:todoid',function(req,res){
+// 	const todo=req.body;
+// 	const todoid=req.params.todoid;
+// 	todolib.updateTodoById(todoid,todo,function(err,dbtodo){
+// 		if(err)
+// 		{
+// 			res.json({status:"error",message:err,data:null});
+// 		}
+// 		else
+// 		{
+// 			res.json({status:"success",data:dbtodo});
+// 		}
+// 	});
+// });
+
+// app.delete('/api/todos/todoid',function(req,res){
+// 	const todoid=req.params.todoid;
+// 	todolib.deleteTodoById(todoid,function(err,dbtodo){
+// 		if(err)
+// 		{
+// 			res.json({status:"error",message:err,data:null});
+// 		}
+// 		else
+// 		{
+// 			res.json({status:"success",data:dbtodo});
+// 		}
+// 	});
+// });
+
+
+app.get("/todo", function(req, res){
+	res.sendFile(_dirname+"/todo.html");
 });
 
-
-app.post('/api/todos',function(req,res){
-	const todo=req.body;
-	todolib.createTodo(todo,function(err,dbtodo){
-		if(err)
-		{
-			res.json({status:"error",message:err,data:null});
+app.get("/api/todos",function(req,res){
+	todoLib.getAllTodos(function(err,todos){
+		if(err){
+			res.json({status : "error", message : err, data : null});
 		}
-		else
-		{
-			res.json({status:"success",data:dbtodo});
+		else{
+			res.json({status : "success", data : todos});
+		}	
+	});
+});
+
+app.get("/api/getnull",function(req,res){
+	todoLib.getAllNull(function(err,todos){
+		if(err){
+			res.json({status : "error", message : err, data : null});
+		}
+		else{
+			res.json({status : "success", data : todos});
+		}	
+	});
+});
+
+app.get("/api/iscompleted",function(req,res){
+	todoLib.getAllCompleted(function(err,todos){
+		if(err){
+			res.json({status : "error", message : err, data : null});
+		}
+		else{
+			res.json({status : "success", data : todos});
+		}	
+	});
+});
+
+app.get("/api/isdeleted",function(req,res){
+	todoLib.getAllDeleted(function(err,todos){
+		if(err){
+			res.json({status : "error", message : err, data : null});
+		}
+		else{
+			res.json({status : "success", data : todos});
+		}	
+	});
+});
+
+app.post("/api/todos", function(req,res){
+	const todo = req.body;
+	todoLib.createTodo(todo, function(err,dbtodo){
+		if(err){
+			res.json({status : "error", message : err, data : null});
+		}
+		else{
+			res.json({status : "success", data : dbtodo});
 		}
 	});
 });
 
-app.put('/api/todos/:todoid',function(req,res){
-	const todo=req.body;
-	const todoid=req.params.todoid;
-	todolib.updateTodoById(todoid,todo,function(err,dbtodo){
-		if(err)
-		{
-			res.json({status:"error",message:err,data:null});
+app.put("/api/todos/:todoid",function(req,res){
+	const todo = req.body;
+	const todoid = req.params.todoid;
+	todoLib.updateTodoById(todoid,todo,function(err,dbtodo){
+		if(err){
+			res.json({status : "error", message : err, data : null});
 		}
-		else
-		{
-			res.json({status:"success",data:dbtodo});
+		else{
+			res.json({status : "success", data : dbtodo});
 		}
 	});
 });
 
-app.delete('/api/todos/todoid',function(req,res){
-	const todoid=req.params.todoid;
-	todolib.deleteTodoById(todoid,function(err,dbtodo){
-		if(err)
-		{
-			res.json({status:"error",message:err,data:null});
+app.delete(("/api/todos/:todoid"),function(req,res){
+	const todoid = req.params.todoid;
+	todoLib.deleteTodoById(todoid, function(err,dbtodo){
+		if(err){
+			res.json({status: "error", message: err, data: null});
 		}
-		else
-		{
-			res.json({status:"success",data:dbtodo});
+		else{
+			res.json({status: "success", data: dbtodo});
 		}
 	});
 });
-
 
 app.get("/darkmode", function(req, res){
 	res.sendFile(__dirname+"/darkmode.html");
