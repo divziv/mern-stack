@@ -11,6 +11,7 @@ const options={
 }
 app.use(express.static("public"));
 app.use(express.json());
+
 app.get("/", function(req, res){
 	//res.send("Hey! I am Divya.");
 	res.sendFile(__dirname+"/index.html");
@@ -44,6 +45,13 @@ app.get("/weather", function(req, res){
 	res.sendFile(__dirname+"/weather.html");
 });
 
+app.get("/darkmode", function(req, res){
+	res.sendFile(__dirname+"/darkmode.html");
+});
+
+app.get("/instagram", function(req, res){
+	res.sendFile(__dirname+"/instagram.html");
+});
 
 // app.get("/todo", function(req, res){
 // 	res.sendFile(__dirname+"/todo.html");
